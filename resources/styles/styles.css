@@ -1,3 +1,7 @@
 .low {
   font-style: italic;
 }
+
+.expensive {
+  font-weight: bold;
+}

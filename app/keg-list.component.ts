@@ -6,7 +6,7 @@ import { Keg } from './keg.model';
   selector: 'keg-list',
   template: `
   <ul>
-    <li *ngFor="let currentKeg of childKegList" [class]="lowKeg(currentKeg)">
+    <li *ngFor="let currentKeg of childKegList" [class]="lowKeg(currentKeg)" [class]="highPrice(currentKeg)">
       <h3>{{currentKeg.beer.name}}</h3>
       <p>{{currentKeg.beer.type}}</p>
       <p>{{currentKeg.beer.brewery}}</p>
@@ -44,6 +44,12 @@ export class KegListComponent {
   lowKeg(keg) {
     if (keg.pintsRemaining <= 10) {
       return "low";
+    }
+  }
+
+  highPrice(keg) {
+    if (keg.beer.price > 7) {
+      return "expensive";
     }
   }
 
