@@ -5,8 +5,12 @@ import { Keg } from './keg.model';
 @Component({
   selector: 'keg-list',
   template: `
+  <select (change)="onChange($event.target.value)">
+    <option value="all">All Kegs</option>
+    <option *ngFor="let currentBeer of childBeerList" [value]="currentBeer.type">{{currentBeer.type}}</option>
+  </select>
   <ul>
-    <li *ngFor="let currentKeg of childKegList" [class]="allKeg(currentKeg)">
+    <li *ngFor="let currentKeg of childKegList | style:filterByStyle" [class]="allKeg(currentKeg)">
       <h3>{{currentKeg.beer.name}}</h3>
       <p>{{currentKeg.beer.type}}</p>
       <p>{{currentKeg.beer.brewery}}</p>
@@ -29,9 +33,16 @@ import { Keg } from './keg.model';
 export class KegListComponent {
 
   @Input() childKegList: Keg[];
+  @Input() childBeerList: Beer[];
 
   @Output() editKegSender = new EventEmitter();
   @Output() createNewKegFromBeerSender = new EventEmitter();
+
+  filterByStyle: string = "all";
+
+  onChange(optionFromMenu) {
+    this.filterByStyle = optionFromMenu;
+  }
 
   createNewKegFromBeer(kegFromBeer: Keg) {
     this.createNewKegFromBeerSender.emit(kegFromBeer.beer);

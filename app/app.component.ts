@@ -6,7 +6,7 @@ import { Keg } from './keg.model';
   selector: 'app-root',
   template: `
   <div class="container">
-    <keg-list [childKegList]="kegs" (editKegSender)="editKeg($event)" (createNewKegFromBeerSender)="addKegFromBeer($event)"></keg-list>
+    <keg-list [childKegList]="kegs" [childBeerList]="beers" (editKegSender)="editKeg($event)" (createNewKegFromBeerSender)="addKegFromBeer($event)"></keg-list>
     <keg-new (newBeerSender)="addBeer($event)" (newKegSender)="addKeg($event)"></keg-new>
     <keg-from-beer [childBeer]="currentBeer" (newKegFromBeerSender)="addKeg($event)"></keg-from-beer>
     <keg-edit [childEditKeg]="currentKeg" (finishedEditSender)="finishEditKeg()"></keg-edit>
