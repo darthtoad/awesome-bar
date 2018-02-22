@@ -6,6 +6,7 @@ import { Keg } from './keg.model';
   selector: 'app-root',
   template: `
   <div class="container">
+    <keg-list [childKegList]="kegs"></keg-list>
   </div>
   `
 })
