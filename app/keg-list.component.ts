@@ -6,7 +6,7 @@ import { Keg } from './keg.model';
   selector: 'keg-list',
   template: `
   <ul>
-    <li *ngFor="let currentKeg of childKegList">
+    <li *ngFor="let currentKeg of childKegList" [class]="lowKeg(currentKeg)">
       <h3>{{currentKeg.beer.name}}</h3>
       <p>{{currentKeg.beer.type}}</p>
       <p>{{currentKeg.beer.brewery}}</p>
@@ -39,6 +39,12 @@ export class KegListComponent {
 
   editKegHasBeenClicked(kegToShow: Keg) {
     this.editKegSender.emit(kegToShow);
+  }
+
+  lowKeg(keg) {
+    if (keg.pintsRemaining <= 10) {
+      return "low";
+    }
   }
 
 }
