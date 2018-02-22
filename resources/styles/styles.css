@@ -5,3 +5,15 @@
 .expensive {
   font-weight: bold;
 }
+
+.strong {
+  color: red;
+}
+
+.IPA {
+  background-color: lime;
+}
+
+.Porter {
+  background-color: brown;
+}
